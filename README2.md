@@ -6,7 +6,7 @@ Figure - setup with external applications
 
 ```mermaid
 graph TD;
-    A-->B;
+    This is a test of mermaid application-->B;
     B-->C;
     C-->D;
     D-->E;
