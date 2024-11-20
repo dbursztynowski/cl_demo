@@ -17,7 +17,7 @@ metadata:
   name: closedloop-v2
   namespace: default
 spec:
-  **decision:**
+  decision:
     config: '{}'
     kind: Decision
     message: '{}'
