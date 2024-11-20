@@ -9,10 +9,10 @@ flowchart LR
 
 I[this is a test only]
 M[managed object] -->|measurement| A(Monitoring)
-A -->|Measurement / # of UEs| P[Policy - OPA]
+A -->|Measurement / #UEs| P[Policy - OPA]
 A -->|Number of UEs| B{Decision}
-B <-->|Rego query with #UEs - scaling decision| C[Policy - OPA]
-B -->|Decision to implement| D[Execution 1]
+B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
+B -->|Decision to implement| D[Execution]
 D -->|kubectl action to execute| M
 ```
 
