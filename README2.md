@@ -11,6 +11,7 @@ A[operator 1] -->|Text| B(operator 2)
 B --> C{Decision}
 C -->|One| D[Execution 1]
 C -->|Two| E[Execution 2]
+C -->|action| A
 ```
 
 ```yaml
