@@ -7,7 +7,7 @@ Figure - setup with external applications
 ```mermaid
 flowchart LR
 
-|this is a test only of mermaid appl|
+I[this is a test only]
 A[operator 1] -->|Text| B(operator 2)
 B --> C{Decision}
 C -->|One| D[Execution 1]
