@@ -6,8 +6,6 @@ Figure - setup with external applications
 
 ```mermaid
 flowchart LR
-
-I[this is a test only]
 M[managed object] -->|measurement| A(Monitoring)
 A -->|Measurement / #UEs| P[Policy - OPA]
 A -->|Number of UEs| B{Decision}
