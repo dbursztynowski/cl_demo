@@ -7,11 +7,11 @@ Figure 1. Demo setup with external applications in the form of OPA policy engine
 ```mermaid
 flowchart LR
 M[Prometheus + Monitored & Managed Objects] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
-X -->|measurement - #UE sessions| A(Monitoring)
+X -->|measurement - #UE sessions| A((Monitoring))
 A <-->|Measurement / #UEs| P[Policy - OPA, retrieves the number of UEs]
 A -->|Number of UEs| B{Decision}
 B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
-B -->|Decision to implement| D[Execution]
+B -->|Decision to implement| D((Execution))
 D -->|kubectl action to execute| K[Kubernetes API]
 K -->|true scaling| M
 ```
