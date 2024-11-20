@@ -5,12 +5,12 @@
 Figure - setup with external applications
 
 ```mermaid
-graph TD;
-    This is a test of mermaid application-->B;
-    B-->C;
-    C-->D;
-    D-->E;
-    E-->A;
+flowchart LR
+
+A[operator 1] -->|Text| B(operator 2)
+B --> C{Decision}
+C -->|One| D[Execution 1]
+C -->|Two| E[Execution 2]
 ```
 
 ```yaml
