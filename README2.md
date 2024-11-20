@@ -2,12 +2,12 @@
 
 
 
-Figure - setup with external applications
+Figure 1. Demo setup with external applications in the form of OPA policy engine.
 
 ```mermaid
 flowchart LR
 M[managed object] -->|measurement| A(Monitoring)
-A -->|Measurement / #UEs| P[Policy - OPA]
+A <-->|Measurement / #UEs| P[Policy - OPA]
 A -->|Number of UEs| B{Decision}
 B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
 B -->|Decision to implement| D[Execution]
