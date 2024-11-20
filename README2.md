@@ -13,7 +13,7 @@ M[Prometheus + Monitored & Managed Objects] -->|measurement - #UE sessions is a 
 X -->|measurement - #UE sessions| A((Monitoring))
 A <-->|Measurement / #UEs| P[Policy - OPA, retrieves the number of UEs]
 A -->|Number of UEs| B{Decision}
-B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
+B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA, decides on the scaling factor required]
 B -->|Decision to implement| D((Execution))
 D -->|kubectl action to execute| K[Kubernetes API]
 K -->|true scaling| M
