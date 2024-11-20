@@ -4,7 +4,7 @@
 
 Figure - setup with external applications
 
-```
+```yaml
 apiVersion: closedlooppooc.closedloop.io/v1
 kind: ClosedLoop
 metadata:
