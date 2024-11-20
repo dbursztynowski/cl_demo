@@ -10,7 +10,7 @@ flowchart LR
 I[this is a test only]
 M[managed object] -->|measurement| A(Monitoring)
 A -->|measurement| B{Decision}
-B -->|Rego query/response| C[Policy - OPA]
+B <-->|Rego query/response| C[Policy - OPA]
 B -->|Policy result| D[Execution 1]
 D -->|action 1| M
 ```
