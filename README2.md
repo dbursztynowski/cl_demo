@@ -6,7 +6,7 @@ Figure 1. Demo setup with external applications in the form of OPA policy engine
 
 ```mermaid
 flowchart LR
-M[managed object + Prometheus] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
+M[Prometheus & Managed Object] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
 X -->|measurement - #UE sessions| A(Monitoring)
 A <-->|Measurement / #UEs| P[Policy - OPA, retrieves the number of UEs]
 A -->|Number of UEs| B{Decision}
