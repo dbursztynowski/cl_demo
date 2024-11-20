@@ -4,12 +4,11 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 #### Note: Mastering the installation of the environment and loop deployment process as outlined in README1.md is required to sucessfully recreate Demo-2.
 
-
+The overall workflow within the demo is depicted in Figure 1 below.
 
 
 
 Figure 1. Demo setup with external applications in the form of OPA policy engine.
-
 ```mermaid
 flowchart LR
 M[Prometheus + Monitored & Managed Objects] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
