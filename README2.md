@@ -11,7 +11,8 @@ A -->|Measurement / #UEs| P[Policy - OPA]
 A -->|Number of UEs| B{Decision}
 B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
 B -->|Decision to implement| D[Execution]
-D -->|kubectl action to execute| M
+D -->|kubectl action to execute| K[Kube API]
+K -->|true scaling| M
 ```
 
 ```yaml
