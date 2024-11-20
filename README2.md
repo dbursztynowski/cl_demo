@@ -7,11 +7,13 @@ Figure - setup with external applications
 ```mermaid
 flowchart LR
 
+|this is a test only of mermaid appl|
 A[operator 1] -->|Text| B(operator 2)
 B --> C{Decision}
 C -->|One| D[Execution 1]
 C -->|Two| E[Execution 2]
-C -->|action| A
+E -->|action 1| A
+E -->|action 2| A
 ```
 
 ```yaml
