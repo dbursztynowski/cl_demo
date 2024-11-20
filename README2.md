@@ -8,7 +8,7 @@ Figure 1. Demo setup with external applications in the form of OPA policy engine
 flowchart LR
 M[managed object + Prometheus] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
 X -->|measurement - #UE sessions| A(Monitoring)
-A <-->|Measurement / #UEs| P[Policy - OPA, retrieves number of UEs]
+A <-->|Measurement / #UEs| P[Policy - OPA, retrieves the number of UEs]
 A -->|Number of UEs| B{Decision}
 B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
 B -->|Decision to implement| D[Execution]
