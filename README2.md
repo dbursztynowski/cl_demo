@@ -4,6 +4,15 @@
 
 Figure - setup with external applications
 
+```mermaid
+graph TD;
+    A-->B;
+    B-->C;
+    C-->D;
+    D-->E;
+    E-->A;
+```
+
 ```yaml
 apiVersion: closedlooppooc.closedloop.io/v1
 kind: ClosedLoop
