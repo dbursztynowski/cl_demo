@@ -508,11 +508,11 @@ kubectl -o yaml get monitoringv2s.closedlooppooc.closedloop.io
 ```
 
 **********************************************************
-# CHAPTER V. DEMONSTRATOR - TWO CASES
+# CHAPTER V. DEMONSTRATOR. TWO CASES
 
 ***Note: In this chapter, the steps illustrating the operation of the reactive and deliberative loops are described. The demo uses loop instances created in the previous part of this guide. Actually, two separate runs will be presented: PART 1 addresses the case of reactive loop running in isolation, and PART 2 presents reactive and deliberative loops running in parallel and interacting with each other so that the deliberative component can monitor the reactive loop and tunes its parameters according to deliberative loop policy. We remind that according the the model of our loops described in the report (see a separate Orange-internal document) the parameters of the deliberative loop policy for a particular instance of that loop are specified in the corresponding CR while the logic of loop policy for resource prioritization is hardcoded in the operator of the deliberative loop.***
 
-## INTRODUCTION - TOP LEVEL VIEW
+## INTRODUCTION. TOP LEVEL VIEW
 
 The workflow of operations within the demo is presented in the figure below. The steps of the workflow are marked with consecutive integers, each step comprising one or two "operations" (symbolically represented as "messages" exchanged between particular functional blocks). The figure given below covers a complete demo workflow, i.e., two loops running in parallel. However, the actions relevant to PART 1 (isolated reactive loop) and PART 2 (both loops are interworking) are easily distinguishable in the figure and we will refer to respective steps in the descriptions that follows.
 
@@ -521,7 +521,7 @@ Figure: Operation workflow of the two loops
 <img src="./images/1-closed-loop-demo-oct2023.svg" width="90%"></img>
 
 **********************************************************
-# CASE A: REACTIVE CLOSED LOOP (isolated loop case)
+# CASE A. REACTIVE CLOSED LOOP (isolated loop case)
 
 #### This run illustrates the basic worflow within a loop. In particular, one can observe how particular modules engaged in the loop exchange information by modifying dedicated parts of appropriate custom resource (CR). Each change of the CR invokes respective reconciler that executes appropriate logic of a given function of the loop.
 **********************************************************
@@ -559,7 +559,7 @@ Step 5 and step 6 cover subsequent reaction of Execution to receiving "React to 
 
 **********************************************************
 
-# CASE B: COMBINED REACTIVE & DELIBERATIVE LOOPS (loop interworking)
+# CASE B. COMBINED REACTIVE & DELIBERATIVE LOOPS (loop interworking)
 
 
 #### This run illustrates a workflow where the deliberative loop monitors the operation of the reactive loop and in case when the reactive loop does not behave according to the expectation of (policy imposed by) the deliberative component than the deliberative loop changes the priority of resourcers. The overall policy of such prioritization is balancing the number of scaling operations of CPU and memory over long time periods (details of the algorithm are described in the Report). In particular, one can observe how particular modules engaged in the loop exchange information by modifying dedicated parts of appropriate custom resource (CR). The steps of each component (reactive loop, deliberative loop) are interleaved in such an order so that the presentation reflects the real flow of operations in the most natural way.
