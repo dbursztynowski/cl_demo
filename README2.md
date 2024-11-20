@@ -8,12 +8,11 @@ Figure - setup with external applications
 flowchart LR
 
 I[this is a test only]
-A[operator 1] -->|Text| B(operator 2)
-B --> C{Decision}
-C -->|One| D[Execution 1]
-C -->|Two| E[Execution 2]
+M[managed object] -->|measurement| A(Monitoring)
+A -->|measurement| B{Decision}
+B -->|Rego query/response| C[Policy - OPA)
+B -->|Policy result| D[Execution 1]
 D -->|action 1| A
-E -->|action 2| A
 ```
 
 ```yaml
