@@ -6,7 +6,8 @@ Figure 1. Demo setup with external applications in the form of OPA policy engine
 
 ```mermaid
 flowchart LR
-M[managed object] -->|measurement| A(Monitoring)
+M[managed object + Prometheus] -->|measurement - #UE sessions| X(Proxy Pod)
+X -->|measurement - #UE sessions| A(Monitoring)
 A <-->|Measurement / #UEs| P[Policy - OPA]
 A -->|Number of UEs| B{Decision}
 B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA]
