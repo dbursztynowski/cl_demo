@@ -5,16 +5,16 @@
 
 # Table of contents
 
-1. [CHAPTER I. INTRODUCTION](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#chapter-i-introduction)
-2. [CHAPTER II. GETTING STARTED](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#chapter-ii-getting-started)
-3. [CHAPTER III. KUBEBUILDER CLOSEDLOOP FROM SCRATCH \(and a little about running on minikube\)](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#chapter-iii-kubebuilder-closedloop-from-scratch-and-a-little-about-running-on-minikube)
-4. [CHAPTER IV. CONSOLIDTED ACTION SET](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#chapter-iv-consolidted-action-set)
-   1. [Uninstall/undeploy](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#uninstallundeploy)
-   2. [All steps needed to run the demo](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#all-steps-needed-to-run-the-demo)
-5. [CHAPTER V. DEMONSTRATOR - TWO CASES](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#chapter-v-demonstrator-two-cases)
-   1. [Introduction - top level view](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#introduction-top-level-view)
-   2. [Case A: Reactive closed loop (isolated loop case)](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#case-a-reactive-closed-loop-isolated-loop-case)
-   3. [Case B: Combined reactive & deliberative loops (loop interworking)](https://gitlab.com/adenisiewicz/closedloop/-/blob/secondloop2/README1.md#case-b-combined-reactive-deliberative-loops-loop-interworking)
+1. [CHAPTER I. INTRODUCTION](#chapter-i-introduction)
+2. [CHAPTER II. GETTING STARTED](#chapter-ii-getting-started)
+3. [CHAPTER III. KUBEBUILDER CLOSEDLOOP FROM SCRATCH \(and a little about running on minikube\)](#chapter-iii-kubebuilder-closedloop-from-scratch-and-a-little-about-running-on-minikube)
+4. [CHAPTER IV. CONSOLIDTED ACTION SET](#chapter-iv-consolidted-action-set)
+   1. [Uninstall/undeploy](#uninstallundeploy)
+   2. [All steps needed to run the demo](#all-steps-needed-to-run-the-demo)
+5. [CHAPTER V. DEMONSTRATOR - TWO CASES](#chapter-v-demonstrator-two-cases)
+   1. [Introduction - top level view](#introduction-top-level-view)
+   2. [Case A: Reactive closed loop (isolated loop case)](#case-a-reactive-closed-loop-isolated-loop-case)
+   3. [Case B: Combined reactive & deliberative loops (loop interworking)](#case-b-combined-reactive-deliberative-loops-loop-interworking)
 
 # CHAPTER I. INTRODUCTION
 
