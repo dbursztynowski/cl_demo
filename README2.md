@@ -16,8 +16,6 @@ metadata:
     app.kubernetes.io/part-of: closedloop
   name: closedloop-v2
   namespace: default
-  resourceVersion: "44870323"
-  uid: 502aec92-205a-472a-9714-e97819d2a7fc
 spec:
   decision:
     config: '{}'
@@ -143,10 +141,6 @@ spec:
           default open5gs_amf_metric := ""
           open5gs_amf_metric := input.open5gs_amf_metric
         name: policy.closedloop_5g.inner.monitoring
-status:
-  increaserank: start
-  increasetime: 2024-11-15 11:02:44.459552452 +0000 UTC m=+251.178921685
-  name: closedloop-v2
 ```
 
 aaa
