@@ -11,7 +11,7 @@
 4. [CHAPTER IV. CONSOLIDTED ACTION SET](#chapter-iv-consolidted-action-set)
    1. [Uninstall/undeploy](#uninstallundeploy)
    2. [All steps needed to run the demo](#all-steps-needed-to-run-the-demo)
-5. [CHAPTER V. DEMONSTRATOR - TWO CASES](#chapter-v-demonstrator-two-cases)
+5. [CHAPTER V. DEMONSTRATOR. TWO CASES](#chapter-v-demonstrator-two-cases)
    1. [Introduction. Top level view](#introduction-top-level-view)
    2. [Case A. Reactive closed loop (isolated loop case)](#case-a-reactive-closed-loop-isolated-loop-case)
    3. [Case B. Combined reactive & deliberative loops (loop interworking)](#case-b-combined-reactive-deliberative-loops-loop-interworking)
