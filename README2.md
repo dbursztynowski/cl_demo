@@ -18,31 +18,40 @@ apiVersion: closedlooppooc.closedloop.io/v1
 kind: ClosedLoop
 metadata:
   labels:
-    app.kubernetes.io/created-by: closedloop
-    app.kubernetes.io/instance: closedloop-sample
-    app.kubernetes.io/managed-by: kustomize
     app.kubernetes.io/name: closedloop
+    app.kubernetes.io/instance: closedloop-sample
     app.kubernetes.io/part-of: closedloop
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: closedloop
   name: closedloop-v2
-  namespace: default
 spec:
-  decision:
-    config: '{}'
-    kind: Decision
-    message: '{}'
+  message: "{}"
+  monitoring:
+    kind: Monitoringv2
+    config: "{requestedpod: true}"
+    message: "{}"
     policy:
-      data:
-        body: |
-          {
-          }
-        name: closedloop_5g/inner/decision
-      description: decision
-      engine:
-        api:
-          data: /v1/data/
-          policy: /v1/policies/
+      name: policy/closedloop_5g/inner/monitoring
+      description: monitoring
+      engine: 
         kind: opa
-        url: http://192.168.49.2:32633
+        url: "http://192.168.49.2:32633"
+        api: 
+          policy: /v1/policies/
+          data: /v1/data/
+      rule:
+        name: policy.closedloop_5g.inner.monitoring
+        body: |
+          package policy.closedloop_5g.inner.monitoring
+          import rego.v1
+          default open5gs_amf_metric := ""
+          open5gs_amf_metric := input.open5gs_amf_metric
+      kind: threshold
+      data: 
+        name: closedloop_5g/inner/monitoring
+        body: |
+                {
+                }
       input:
         schema: |
           {
@@ -53,22 +62,35 @@ spec:
               }
             }
           }
-        value: '{"open5gs_amf_metric":"#spec.message.open5gs_amf_metric"}'
-      kind: priority
-      name: policy/closedloop_5g/inner/decision
+        value: "{\"open5gs_amf_metric\":\"#spec.message.data.result.0.value.1\"}" 
       result:
         schema: |
           {
             "type": "object",
             "properties": {
-              "cpu": {
-                "type": "string"
+              "open5gs_amf_metric": {
+                "type": "number"
               }
             }
           }
-        value: '{"cpu":"cr:execution#spec.message.cpu"}'
+        value: "{\"open5gs_amf_metric\":\"cr:decision#spec.message.open5gs_amf_metric\"}"
+  decision:
+    kind: Decision
+    config: "{}"
+    message: "{}"
+    policy:
+      name: policy/closedloop_5g/inner/decision
+      description: decision
+      
+      engine: 
+        kind: opa
+        url: "http://192.168.49.2:32633"
+        api: 
+          policy: /v1/policies/
+          data: /v1/data/
       rule:
-        body: |
+        name: policy.closedloop_5g.inner.decision
+        body: | 
           package policy.closedloop_5g.inner.decision
           import rego.v1
 
@@ -90,35 +112,12 @@ spec:
               to_number(input.open5gs_amf_metric) >= 10
                   to_number(input.open5gs_amf_metric) <= 12
               }
-        name: policy.closedloop_5g.inner.decision
-  execution:
-    config: |
-      {
-        "function": {
-          "name": "Podpatch",
-          "parameter": "cpu"
-        }
-      }
-    kind: Execution
-    message: '{}'
-  message: '{}'
-  monitoring:
-    config: '{requestedpod: true}'
-    kind: Monitoringv2
-    message: '{}'
-    policy:
+      kind: priority
       data:
+        name: closedloop_5g/inner/decision
         body: |
           {
           }
-        name: closedloop_5g/inner/monitoring
-      description: monitoring
-      engine:
-        api:
-          data: /v1/data/
-          policy: /v1/policies/
-        kind: opa
-        url: http://192.168.49.2:32633
       input:
         schema: |
           {
@@ -129,27 +128,28 @@ spec:
               }
             }
           }
-        value: '{"open5gs_amf_metric":"#spec.message.data.result.0.value.1"}'
-      kind: threshold
-      name: policy/closedloop_5g/inner/monitoring
+        value: "{\"open5gs_amf_metric\":\"#spec.message.open5gs_amf_metric\"}" 
       result:
         schema: |
           {
             "type": "object",
             "properties": {
-              "open5gs_amf_metric": {
-                "type": "number"
+              "cpu": {
+                "type": "string"
               }
             }
           }
-        value: '{"open5gs_amf_metric":"cr:decision#spec.message.open5gs_amf_metric"}'
-      rule:
-        body: |
-          package policy.closedloop_5g.inner.monitoring
-          import rego.v1
-          default open5gs_amf_metric := ""
-          open5gs_amf_metric := input.open5gs_amf_metric
-        name: policy.closedloop_5g.inner.monitoring
+        value: "{\"cpu\":\"cr:execution#spec.message.cpu\"}" 
+  execution:
+    kind: Execution
+    config: | 
+      {
+        "function": {
+          "name": "Podpatch",
+          "parameter": "cpu"
+        }
+      }
+    message: "{}"
 ```
 
 aaa
