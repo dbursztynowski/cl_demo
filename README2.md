@@ -6,9 +6,7 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 The overall workflow within the demo is depicted in Figure 1 below.
 
-
-
-Figure 1. Demo setup with external applications in the form of OPA policy engine.
+**_Figure 1. Demo setup with external applications in the form of OPA policy engine._**
 ```mermaid
 flowchart LR
 M[Prometheus + Monitored & Managed Objects] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
