@@ -1,0 +1,24 @@
+apiVersion: closedlooppooc.closedloop.io/v1
+kind: Execution
+metadata:
+  creationTimestamp: "2024-11-14T14:26:32Z"
+  generation: 25
+  name: closedloop-v2-execution
+  namespace: default
+  resourceVersion: "44870482"
+  uid: c3356818-b51c-49bb-8227-42c4daccebcf
+spec:
+  affix: closedloop-v2
+  config: |
+    {
+      "function": {
+        "name": "Podpatch",
+        "parameter": "cpu"
+      }
+    }
+  executiontypeid: 0
+  message: |-
+    {
+      "cpu": "200m"
+    }
+  time: 2024-11-14 14:26:32.543313836 +0000 UTC m=+21.671991774

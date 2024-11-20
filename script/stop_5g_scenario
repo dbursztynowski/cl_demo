@@ -1,0 +1,29 @@
+OPA_URL=$(minikube service opa --url)
+echo curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/monitoring
+curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/monitoring
+echo curl -X DELETE $OPA_URL/v1/data/closedloop_5g/inner/monitoring
+curl -X DELETE $OPA_URL/v1/data/closedloop_5g/inner/monitoring
+echo curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/monitoring
+curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/monitoring
+
+echo curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/decision
+curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/decision
+echo curl -X DELETE $OPA_URL/v1/data/closedloop_5g/inner/decision
+curl -X DELETE $OPA_URL/v1/data/closedloop_5g/inner/decision
+echo curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/decision
+curl -X GET $OPA_URL/v1/data/closedloop_5g/inner/decision
+
+kubectl delete -f ../closedloop/config/samples/closedlooppooc_v1_closedloop_open5gs.yaml
+
+kubectl patch configmap sourceconfigmap --patch \
+          "{\"data\":{\"read\":\"false\"}}"
+
+kubectl delete pod `kubectl get pod -n  default | grep closedloop-v2-monitoring|awk '{print $1}'` -n  default
+kubectl get pod `kubectl get pod -n  default | grep closedloop-v2-monitoring|awk '{print $1}'` -n  default
+
+kubectl patch  Monitoringv2  closedloop-v2-monitoring --type=merge --patch \
+          "{\"spec\":{\"message\":\"{}\"}}"
+kubectl patch  Decision  closedloop-v2-decision  --type=merge --patch \
+          "{\"spec\":{\"message\":\"{}\"}}"
+kubectl patch  Execution  closedloop-v2-execution  --type=merge --patch \
+          "{\"spec\":{\"message\":\"{}\"}}"          

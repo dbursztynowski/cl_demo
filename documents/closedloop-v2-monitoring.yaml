@@ -1,0 +1,62 @@
+apiVersion: closedlooppooc.closedloop.io/v1
+kind: Monitoringv2
+metadata:
+  creationTimestamp: "2024-11-14T14:26:32Z"
+  generation: 2761
+  name: closedloop-v2-monitoring
+  namespace: default
+  resourceVersion: "44894473"
+  uid: 7ba70f4c-6d64-4c99-9260-a8ff17a39099
+spec:
+  affix: closedloop-v2
+  config: '{requestedpod: true}'
+  kind: ""
+  message: '{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"amf_session","container":"open5gs-amf","endpoint":"metrics","instance":"10.42.1.98:9090","job":"open5gs-amf-metrics","namespace":"default","pod":"open5gs-amf-84b694c467-kml6r","service":"open5gs-amf-metrics"},"value":[1731685031.222,"8"]},{"metric":{"__name__":"amf_session","container":"open5gs-amf","endpoint":"metrics","instance":"10.42.1.186:9090","job":"open5gs-amf-metrics","namespace":"5gsrusher","pod":"open5gs-amf-9b664b58b-k5llk","service":"open5gs-amf-metrics"},"value":[1731685031.222,"4"]}]}}'
+  policy:
+    data:
+      body: |
+        {
+        }
+      name: closedloop_5g/inner/monitoring
+    description: monitoring
+    engine:
+      api:
+        data: /v1/data/
+        policy: /v1/policies/
+      kind: opa
+      url: http://192.168.49.2:32633
+    input:
+      schema: |
+        {
+          "type": "object",
+          "properties": {
+            "open5gs_amf_metric": {
+              "type": "number"
+            }
+          }
+        }
+      value: '{"open5gs_amf_metric":"#spec.message.data.result.0.value.1"}'
+    kind: threshold
+    name: policy/closedloop_5g/inner/monitoring
+    result:
+      schema: |
+        {
+          "type": "object",
+          "properties": {
+            "open5gs_amf_metric": {
+              "type": "number"
+            }
+          }
+        }
+      value: '{"open5gs_amf_metric":"cr:decision#spec.message.open5gs_amf_metric"}'
+    rule:
+      body: |
+        package policy.closedloop_5g.inner.monitoring
+        import rego.v1
+        default open5gs_amf_metric := ""
+        open5gs_amf_metric := input.open5gs_amf_metric
+      name: policy.closedloop_5g.inner.monitoring
+  requestedpod: false
+  time: "2024-11-15 15:37:11.249208"
+status:
+  affix: closedloop-v2-monitoring

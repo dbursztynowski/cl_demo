@@ -1,0 +1,168 @@
+/*
+package main
+
+import (
+	"fmt"
+	"strings"
+)
+
+type ADJson struct {
+	jsonByte []byte
+	jsonString string
+}
+
+type ADFind struct {
+	start_idx int
+	end_idx int
+	start_value int
+	end_value  int
+}
+func (j *ADJson) ReadElement(path string, bull_opt ... bool) string {
+	bull := false
+	  if len(bull_opt) > 0 {
+    		bull = bull_opt[0]
+  	}
+	
+	adFind := j.FindElement(path, bull)
+	return j.jsonString[adFind.start_value:adFind.end_value]
+}
+func (j *ADJson) SetElement(path string, value string, bull_opt ... bool) {
+
+	bull := false
+	  if len(bull_opt) > 0 {
+    		bull = bull_opt[0]
+  	}
+	
+	adFind := j.FindElement(path, bull)
+	fmt.Println("adFind.start_value: " + fmt.Sprint(adFind.start_value))
+	if !bull {
+		j.jsonString = j.jsonString[:adFind.start_value] + "\"" + value +"\"" + j.jsonString[adFind.end_value:]
+	} else {
+		j.jsonString = j.jsonString[:adFind.start_value] + value + j.jsonString[adFind.end_value:]
+	} 
+}
+
+func (j *ADJson) FindElement(path string, bull_opt ... bool) ADFind {
+
+	bull := false
+	  if len(bull_opt) > 0 {
+    		bull = bull_opt[0]
+  	}
+
+	var start_idx int
+	var end_idx int
+	var start_value int
+	var end_value  int
+	var adFind ADFind
+
+	start_idx = 0
+	end_idx  = -2
+	start_value = 0
+	end_value  = 0
+	
+	adFind.start_idx = 0
+	adFind.end_idx  = 0
+	adFind.start_value = 0
+	adFind.end_value  = 0
+	
+
+
+	paths := strings.Split(path, ".")
+	for _, element := range paths {
+		fmt.Println("element: " + element)
+		fmt.Println("Szukam w: " + j.jsonString[end_idx+2:])
+		start_idx = strings.Index(j.jsonString[end_idx+2:], element+"\":")
+		if start_idx != -1 {
+			start_idx += end_idx + 2 
+		} else {
+			return adFind
+		}
+		end_idx = start_idx + len(element) 
+		fmt.Println("start_idx: " + fmt.Sprint(start_idx))
+		fmt.Println("end_idx: " + fmt.Sprint(end_idx))
+		fmt.Println(j.jsonString[start_idx:end_idx])
+	}
+	
+	if (!bull) {
+	
+		fmt.Println("Szukam wartości w: " + j.jsonString[end_idx+2:])
+		start_value = strings.Index(j.jsonString[end_idx+2:], "\"")
+		if start_value != -1 {
+			start_value += end_idx + 2 
+		} else {
+			return adFind
+		}
+
+		fmt.Println("Szukam końca wartości w: " + j.jsonString[start_value+1:])
+		end_value = strings.Index(j.jsonString[start_value+1:], "\"")
+		if end_value != -1 {
+			end_value += start_value + 2 
+		} else {
+			return adFind
+		}
+
+		fmt.Println("start_value: " + fmt.Sprint(start_value))
+		fmt.Println("end_value: " + fmt.Sprint(end_value))
+
+		adFind.start_idx = start_idx
+		adFind.end_idx  = end_idx
+		adFind.start_value = start_value
+		adFind.end_value  = end_value
+	} else {
+		fmt.Println("Szukam wartości w: " + j.jsonString[end_idx+2:])
+		start_value = strings.Index(j.jsonString[end_idx+2:], "true")
+		if start_value != -1 && start_value < 2 {
+			start_value += end_idx + 2 
+			end_value = start_value + 4 
+		} else {
+			start_value = strings.Index(j.jsonString[end_idx+2:], "false")
+			if start_value != -1 && start_value < 2 {
+				start_value += end_idx + 2 
+				end_value = start_value + 5 
+			} else {
+				return adFind
+			}
+		}
+		fmt.Println("start_value: " + fmt.Sprint(start_value))
+		fmt.Println("end_value: " + fmt.Sprint(end_value))
+
+		adFind.start_idx = start_idx
+		adFind.end_idx  = end_idx
+		adFind.start_value = start_value
+		adFind.end_value  = end_value	
+	}
+	
+	return adFind
+
+}
+
+
+func main() {
+	fmt.Println("Hello, playground")
+	adJson := new(ADJson)
+	adJson.jsonString ="{\"a\":\"a\",\"b\":\"bb\",\"c\":false}"
+	fmt.Println("*" + adJson.jsonString)
+	adJson.SetElement("a.b.c","false", true)
+	fmt.Println("#" + adJson.jsonString)
+//	adJson.jsonString ="0a\":4567b\":Bc\":\"G\"IJ"
+	fmt.Println(adJson.ReadElement("a.b.c", true))
+}
+
+func (j *ADJson) SetElement(path string, value string) {
+	
+	adFind := j.FindElement(path)
+	fmt.Println("adFind.start_value: " + fmt.Sprint(adFind.start_value))
+	j.jsonString = j.jsonString[:adFind.start_value] + "\"" + value +"\"" + j.jsonString[adFind.end_value:]
+}
+
+func main() {
+	fmt.Println("Hello, playground")
+	adJson := new(ADJson)
+	adJson.jsonString ="{\"a\":\"a\",\"b\":\"bb\",\"c\":\"ccc\"}"
+	fmt.Println("*" + adJson.jsonString)
+	adJson.SetElement("a.b.c","dupa")
+	fmt.Println("#" + adJson.jsonString)
+//	adJson.jsonString ="0a\":4567b\":Bc\":\"G\"IJ"
+	fmt.Println(adJson.ReadElement("a.b.c"))
+}
+*/

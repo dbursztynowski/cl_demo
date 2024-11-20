@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: policyconfigmap
+data:
+  name: data.closedloop.inner.decision
+  body: |
+    {
+    "Decisionpolicies": {
+        "Decisiontype": "Priority",
+        "Priorityspec": {
+            "Priorityrank": {
+                "rank-1": "cpu",
+                "rank-2": "memory"
+            },
+            "Prioritytype": "Basic",
+            "Time": "2023-12-01 21:51:58.427048"
+        }
+      }
+    }

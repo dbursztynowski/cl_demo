@@ -1,0 +1,81 @@
+apiVersion: closedlooppooc.closedloop.io/v1
+kind: Decision
+metadata:
+  creationTimestamp: "2024-11-14T14:26:32Z"
+  generation: 19
+  name: closedloop-v2-decision
+  namespace: default
+  resourceVersion: "44870481"
+  uid: 479be6cf-ef95-40a9-8fe3-82bf83997d41
+spec:
+  affix: closedloop-v2
+  config: '{}'
+  executionkind: ""
+  message: |-
+    {
+      "open5gs_amf_metric": 8
+    }
+  policy:
+    data:
+      body: |
+        {
+        }
+      name: closedloop_5g/inner/decision
+    description: decision
+    engine:
+      api:
+        data: /v1/data/
+        policy: /v1/policies/
+      kind: opa
+      url: http://192.168.49.2:32633
+    input:
+      schema: |
+        {
+          "type": "object",
+          "properties": {
+            "open5gs_amf_metric": {
+              "type": "number"
+            }
+          }
+        }
+      value: '{"open5gs_amf_metric":"#spec.message.open5gs_amf_metric"}'
+    kind: priority
+    name: policy/closedloop_5g/inner/decision
+    result:
+      schema: |
+        {
+          "type": "object",
+          "properties": {
+            "cpu": {
+              "type": "string"
+            }
+          }
+        }
+      value: '{"cpu":"cr:execution#spec.message.cpu"}'
+    rule:
+      body: |
+        package policy.closedloop_5g.inner.decision
+        import rego.v1
+
+        default cpu := ""
+
+        cpu :=  "100m" if {
+            to_number(input.open5gs_amf_metric) >= 0
+                to_number(input.open5gs_amf_metric) < 4
+            }
+        cpu :=  "150m" if {
+            to_number(input.open5gs_amf_metric) >= 4
+                to_number(input.open5gs_amf_metric) < 8
+            }
+        cpu :=  "200m" if {
+            to_number(input.open5gs_amf_metric) >= 8
+                to_number(input.open5gs_amf_metric) < 10
+            }
+        cpu :=  "250m" if {
+            to_number(input.open5gs_amf_metric) >= 10
+                to_number(input.open5gs_amf_metric) <= 12
+            }
+      name: policy.closedloop_5g.inner.decision
+  time: 2024-11-14 14:26:32.527637452 +0000 UTC m=+21.656315390
+status:
+  affix: closedloop-v2-decision

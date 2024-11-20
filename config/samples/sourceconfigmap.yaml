@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sourceconfigmap
+data:
+  name: sourceconfigmap
+  server: "true"
+  read: "true"
+  url: http://10.254.186.64:9090/api/v1/query?query=amf_session{service="open5gs-amf-metrics"}
+  interval: "30"

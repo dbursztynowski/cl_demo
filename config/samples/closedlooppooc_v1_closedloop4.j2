@@ -1,0 +1,70 @@
+
+apiVersion: closedlooppooc.closedloop.io/v1
+kind: ClosedLoop
+metadata:
+  labels:
+    app.kubernetes.io/name: closedloop
+    app.kubernetes.io/instance: closedloop-sample
+    app.kubernetes.io/part-of: closedloop
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: closedloop
+  name: closedloop-v2
+spec:
+  monitoring: 
+    monitoringkind:
+      monitoringkindname: Monitoringv2
+      requestedpod: true
+    policies:
+      policyname: &POLICY {{policy.name}}   # local name
+        description: {{policy.description}} # non machine-interpretable text
+        policyengine: {{policy.engine}}     # e.g., rego
+        rulename: {{policy.rulename}} # e.g., rego package (rule) name
+        policydata:
+        # policy itself, e.g., rego Data part
+        # consumable by policyengine
+          data:
+            {%- for i in range(1,policy.data.metric|length+1)%}
+              MonitoringData-{{i}}: {{policy.data.metric[i]}}
+            {%- endfor%}
+            thresholdkind:
+            {%- for i in range(1,policy.data.metric|length+1)%}
+              MonitoringData-{{i}}-thresholdkind: {{policy.data.threshold.kind[i]}}
+            {%- endfor%}
+            thresholdvalue:
+            {%- for i in range(1,policy.data.metric|length+1)%}
+              MonitoringData-{{i}}-thresholdvalue: {{policy.data.threshold.value[i]}}
+            {%- endfor%}
+        policyinput:        #
+          item-list:       # e.g., rego Input part, can be predefined partially
+          {%- for i in range(1,policy.input.metric|length+1)%}
+          - item-{{i}}:
+            key: {{policy.input.metric[i]}}
+            sourcetype: {{policy.input.source[i]}}
+            value: {{policy.input.value[i]}}
+          {%- endfor%}
+      message: {{map}}
+      $ref: ${spec/monitoring/policies/policyname}
+      wynik: *POLICY
+      policyresult:
+       {%- for i in range(1,policy.result.metric|length+1)%}
+       monitoringdata_{{i}}: {{policy.result.target[i]}}
+      {%- endfor%}
+  time: "notime"
+  decision:
+    decisionkind:
+      decisionkindname: Decision
+    decisionpolicies:
+      decisiontype: Priority
+      priorityspec:
+        prioritytype: Basic
+        priorityrank:
+          rank-1: cpu
+          rank-2: memory
+        time: "notime"
+  execution:
+    apiVersion: closedlooppooc.closedloop.io/v1
+    kind: Execution
+    spec:
+      action: "No Action"
+      executiontypeid: 1
+body: {{policy.rule.body}}

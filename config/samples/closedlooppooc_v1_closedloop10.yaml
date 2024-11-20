@@ -1,0 +1,293 @@
+apiVersion: closedlooppooc.closedloop.io/v1
+kind: ClosedLoop
+metadata:
+  labels:
+    app.kubernetes.io/name: closedloop
+    app.kubernetes.io/instance: closedloop-sample
+    app.kubernetes.io/part-of: closedloop
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/created-by: closedloop
+  name: closedloop-v2
+spec:
+  message: "{}"
+  monitoring:
+    kind: Monitoringv2
+    config: "{requestedpod: true}"
+    message: "{}"
+    policy:
+      name: policy/closedloop/inner/monitoring
+      description: monitoring
+      engine: 
+        kind: opa
+        url: "http://192.168.49.2:32633"
+        api: 
+          policy: /v1/policies/
+          data: /v1/data/
+      rule:
+        name: policy.closedloop.inner.monitoring
+        body: |
+          package policy.closedloop.inner.monitoring
+
+          import rego.v1
+
+          default cpu := "ok"
+
+          cpu := result if {
+              some cpu_idx
+              datapolicy := data.closedloop.inner.monitoring
+              datapolicy.Monitoringpolicies.Data[cpu_idx] == "cpu"
+              cpu_idx_tresh := sprintf("%v%v", [cpu_idx, "-thresholdvalue"])
+              cpu_idx_kind := sprintf("%v%v", [cpu_idx, "-thresholdkind"])
+              datapolicy.Monitoringpolicies.Tresholdkind[cpu_idx_kind] == "inferior"
+              to_number(input.cpu) < to_number(datapolicy.Monitoringpolicies.Tresholdvalue[cpu_idx_tresh])
+              result := "low"
+          }
+
+          cpu := result if {
+              some cpu_idx
+              datapolicy := data.closedloop.inner.monitoring
+              datapolicy.Monitoringpolicies.Data[cpu_idx] == "cpu"
+              cpu_idx_tresh := sprintf("%v%v", [cpu_idx, "-thresholdvalue"])
+              cpu_idx_kind := sprintf("%v%v", [cpu_idx, "-thresholdkind"])
+              datapolicy.Monitoringpolicies.Tresholdkind[cpu_idx_kind] == "superior"
+              to_number(input.cpu) > to_number(datapolicy.Monitoringpolicies.Tresholdvalue[cpu_idx_tresh])
+              result := "high"
+          }
+
+          cpu := result if {
+              some cpu_idx
+              datapolicy := data.closedloop.inner.monitoring
+              datapolicy.Monitoringpolicies.Data[cpu_idx] == "cpu"
+              cpu_idx_tresh := sprintf("%v%v", [cpu_idx, "-thresholdvalue"])
+              cpu_idx_kind := sprintf("%v%v", [cpu_idx, "-thresholdkind"])
+              datapolicy.Monitoringpolicies.Tresholdkind[cpu_idx_kind] == "uniform"
+              to_number(input.cpu) == to_number(datapolicy.Monitoringpolicies.Tresholdvalue[cpu_idx_tresh])
+              result := "ok"
+          }
+
+          default memory := "ok"
+
+          memory := result if {
+              some memory_idx
+              datapolicy := data.closedloop.inner.monitoring
+              datapolicy.Monitoringpolicies.Data[memory_idx] == "memory"
+              memory_idx_tresh := sprintf("%v%v", [memory_idx, "-thresholdvalue"])
+              memory_idx_kind := sprintf("%v%v", [memory_idx, "-thresholdkind"])
+              datapolicy.Monitoringpolicies.Tresholdkind[memory_idx_kind] == "inferior"
+              to_number(input.memory) < to_number(datapolicy.Monitoringpolicies.Tresholdvalue[memory_idx_tresh])
+              result := "low"
+          }
+
+          memory := result if {
+              some memory_idx
+              datapolicy := data.closedloop.inner.monitoring
+              datapolicy.Monitoringpolicies.Data[memory_idx] == "memory"
+              memory_idx_tresh := sprintf("%v%v", [memory_idx, "-thresholdvalue"])
+              memory_idx_kind := sprintf("%v%v", [memory_idx, "-thresholdkind"])
+              datapolicy.Monitoringpolicies.Tresholdkind[memory_idx_kind] == "superior"
+              to_number(input.memory) > to_number(datapolicy.Monitoringpolicies.Tresholdvalue[memory_idx_tresh])
+              result := "high"
+          }
+
+          memory := result if {
+              some memory_idx
+              datapolicy := data.closedloop.inner.monitoring
+              datapolicy.Monitoringpolicies.Data[memory_idx] == "memory"
+              memory_idx_tresh := sprintf("%v%v", [memory_idx, "-thresholdvalue"])
+              memory_idx_kind := sprintf("%v%v", [memory_idx, "-thresholdkind"])
+              datapolicy.Monitoringpolicies.Tresholdkind[memory_idx_kind] == "uniform"
+              to_number(input.memory) == to_number(datapolicy.Monitoringpolicies.Tresholdvalue[memory_idx_tresh])
+              result := "ok"
+          }
+      kind: threshold
+      data: 
+        name: closedloop/inner/monitoring
+        body: |
+                {
+                "Monitoringpolicies": {
+                    "Data": {
+                        "MonitoringData-1": "memory",
+                        "MonitoringData-2": "cpu"
+                    },
+                    "Time": "2023-12-01 21:51:58.427048",
+                    "Tresholdkind": {
+                        "MonitoringData-1-thresholdkind": "inferior",
+                        "MonitoringData-2-thresholdkind": "inferior"
+                    },
+                    "Tresholdvalue": {
+                        "MonitoringData-1-thresholdvalue": 100,
+                        "MonitoringData-2-thresholdvalue": 10
+                    }
+                  }
+                }
+      input:
+        schema: |
+          {
+            "type": "object",
+            "properties": {
+              "cpu": {
+                "type": "number"
+              },
+              "memory": {
+                "type": "number"
+              }
+            }
+          } 
+        value: "{\"cpu\":\"#spec.message.cpu\",\"memory\":\"#spec.message.memory\"}" 
+      result:
+        schema: |
+          {
+            "type": "object",
+            "properties": {
+              "cpu": {
+                "type": "string",
+                "enum": ["ok", "low", "high"]
+              },
+              "memory": {
+                "type": "string",
+                "enum": ["ok", "low", "high"]
+              }
+            }
+          }
+        value: "{\"cpu\":\"cr:decision#spec.message.cpu\",\"memory\":\"cr:decision#spec.message.memory\"}"
+  decision:
+    kind: Decision
+    config: "{}"
+    message: "{}"
+    policy:
+      name: policy/closedloop/inner/decision
+      description: decision
+      
+      engine: 
+        kind: opa
+        url: "http://192.168.49.2:32633"
+        api: 
+          policy: /v1/policies/
+          data: /v1/data/
+      rule:
+        name: policy.closedloop.inner.decision
+        body: | 
+          package policy.closedloop.inner.decision
+
+          import rego.v1
+
+          default metric := "none"
+          default monitoring.cpu := false
+          monitoring.cpu = input.cpu
+          default monitoring.memory := false
+          monitoring.memory = input.memory
+
+          to_bool(value):=true if{
+                  value == "high"
+          }
+          to_bool(value):=true if{
+                  value == "low"
+          }
+          to_bool(value):=true if{
+                  value == "true"
+          }
+          to_bool(value):=true if{
+                  value == true
+          }
+          to_bool(value):=false if{
+                  value != "true"
+              value != true
+              value != "low"
+              value != "high"
+          }
+          to_bool(value):=false if{
+                  value == false
+          }
+
+          metric := result if {
+              datapolicy := data.closedloop.inner.decision
+              datapolicy.Decisionpolicies.Decisiontype == "Priority"
+              to_bool(monitoring.cpu) == true
+              to_bool(monitoring.memory) == true
+              result := datapolicy.Decisionpolicies.Priorityspec.Priorityrank["rank-1"]
+          }
+
+          metric := result if {
+              datapolicy := data.closedloop.inner.decision
+              datapolicy.Decisionpolicies.Decisiontype == "Priority"
+              to_bool(monitoring.cpu) == true
+              to_bool(monitoring.memory) == false
+              result := "cpu"
+          }
+
+          metric := result if {
+              datapolicy := data.closedloop.inner.decision
+              datapolicy.Decisionpolicies.Decisiontype == "Priority"
+              to_bool(monitoring.cpu) == false
+              to_bool(monitoring.memory) == true
+              result := "memory"
+          }
+
+          action := result if {
+              input[metric] == "low"
+              result := "increase"
+          }
+
+          action := result if {
+              input[metric] == "high"
+              result := "decrease"
+          }
+
+          action := result if {
+              input[metric] == "ok"
+              result := "ok"
+          }
+      kind: priority
+      data:
+        name: closedloop/inner/decision
+        body: |
+          {
+          "Decisionpolicies": {
+              "Decisiontype": "Priority",
+              "Priorityspec": {
+                  "Priorityrank": {
+                      "rank-1": "cpu",
+                      "rank-2": "memory"
+                  },
+                  "Prioritytype": "Basic",
+                  "Time": "2023-12-01 21:51:58.427048"
+              }
+            }
+          }
+      input:
+        schema: |
+          {
+            "type": "object",
+            "properties": {
+              "cpu": {
+                "type": "string",
+                "enum": ["ok", "low", "high"]
+              },
+              "memory": {
+                "type": "string",
+                "enum": ["ok", "low", "high"]
+              }
+            }
+          }
+        value: "{\"cpu\":\"#spec.message.cpu\",\"memory\":\"#spec.message.memory\"}" 
+      result:
+        schema: |
+          {
+            "type": "object",
+            "properties": {
+              "metric": {
+                "type": "string"
+              },
+              "action": {
+                "type": "string"
+              }
+            }
+          }
+        value: "{\"metric\":\"cr:execution#spec.message.metric\",\"action\":\"cr:execution#spec.message.action\"}" 
+  execution:
+    kind: Execution
+    config: "{}"
+    message: "{}"
+
+
+

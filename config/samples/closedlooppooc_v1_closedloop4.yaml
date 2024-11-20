@@ -1,0 +1,32 @@
+policy:
+  name: monitoring
+  description: monitoring
+  engine: 
+    kind: opa
+    url: "http://192.168.49.2:32633"
+    api: 
+      policy: /v1/policies/
+      data: /v1/data/
+  rule:
+    name: closedloop.inner.monitoring
+    body: @closedloop.inner.monitoring.rego
+  kind: threshold
+  data:
+    name: data.closedloop.inner.monitoring
+    header: 
+      - metric
+      - threshold
+      - value
+    value:
+      - [cpu, inferior, 5]
+      - [memory, inferior, 50]
+  input:
+    schema: @monitoring_input.json 
+    value:
+      cpu: "#spec.message.cpu"
+      memory: "#spec.message.memory"
+  result:
+    schema: @monitoring_result.json
+    value:
+      cpu: "cr:decision#spec.message.cpu" 
+      memory: "cr:decision#spec.message.memory"   

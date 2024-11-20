@@ -1,0 +1,20 @@
+OPA_URL=$(minikube service opa --url)
+echo curl -X GET $OPA_URL/v1/data/closedloop/inner/monitoring
+curl -X GET $OPA_URL/v1/data/closedloop/inner/monitoring
+echo curl -X DELETE $OPA_URL/v1/data/closedloop/inner/monitoring
+curl -X DELETE $OPA_URL/v1/data/closedloop/inner/monitoring
+echo curl -X GET $OPA_URL/v1/data/closedloop/inner/monitoring
+curl -X GET $OPA_URL/v1/data/closedloop/inner/monitoring
+
+echo curl -X GET $OPA_URL/v1/data/closedloop/inner/decision
+curl -X GET $OPA_URL/v1/data/closedloop/inner/decision
+echo curl -X DELETE $OPA_URL/v1/data/closedloop/inner/decision
+curl -X DELETE $OPA_URL/v1/data/closedloop/inner/decision
+echo curl -X GET $OPA_URL/v1/data/closedloop/inner/decision
+curl -X GET $OPA_URL/v1/data/closedloop/inner/decision
+
+kubectl delete -f ../closedloop/config/samples/closedlooppooc_v1_closedloop9.yaml 
+kubectl apply -f ../closedloop/config/samples/closedlooppooc_v1_closedloop9.yaml
+kubectl delete pod `kubectl get pod -n  closedloop-system | grep closedloop-controller-manager|awk '{print $1}'` -n  closedloop-system
+kubectl get pod `kubectl get pod -n  closedloop-system | grep closedloop-controller-manager|awk '{print $1}'` -n  closedloop-system
+

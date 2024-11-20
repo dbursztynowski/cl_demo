@@ -1,0 +1,28 @@
+{
+    "Decisionpolicies": {
+        "Decisiontype": "Priority",
+        "Priorityspec": {
+            "Priorityrank": {
+                "rank-1": "cpu",
+                "rank-2": "memory"
+            },
+            "Prioritytype": "Basic",
+            "Time": "2023-12-01 21:51:58.427048"
+        }
+    },
+    "Monitoringpolicies": {
+        "Data": {
+            "MonitoringData-1": "memory",
+            "MonitoringData-2": "cpu"
+        },
+        "Time": "2023-12-01 21:51:58.427048",
+        "Tresholdkind": {
+            "MonitoringData-1-thresholdkind": "inferior",
+            "MonitoringData-2-thresholdkind": "inferior"
+        },
+        "Tresholdvalue": {
+            "MonitoringData-1-thresholdvalue": 50,
+            "MonitoringData-2-thresholdvalue": 5
+        }
+    }
+}
