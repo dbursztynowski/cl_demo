@@ -12,7 +12,7 @@
    1. [Uninstall/undeploy](#uninstallundeploy)
    2. [All steps needed to run the demo](#all-steps-needed-to-run-the-demo)
 5. [CHAPTER V. DEMONSTRATOR - TWO CASES](#chapter-v-demonstrator---two-cases)
-   1. [Introduction. Top level view](#introduction-top-level-view)
+   1. [Introduction - top level view](#introduction---top-level-view)
    2. [Case A. Reactive closed loop (isolated loop case)](#case-a-reactive-closed-loop-isolated-loop-case)
    3. [Case B. Combined reactive & deliberative loops (loop interworking)](#case-b-combined-reactive--deliberative-loops-loop-interworking)
 
@@ -514,7 +514,7 @@ kubectl -o yaml get monitoringv2s.closedlooppooc.closedloop.io
 
 ***Note: In this chapter, the steps illustrating the operation of the reactive and deliberative loops are described. The demo uses loop instances created in the previous part of this guide. Actually, two separate runs will be presented: PART 1 addresses the case of reactive loop running in isolation, and PART 2 presents reactive and deliberative loops running in parallel and interacting with each other so that the deliberative component can monitor the reactive loop and tunes its parameters according to deliberative loop policy. We remind that according the the model of our loops described in the report (see a separate Orange-internal document) the parameters of the deliberative loop policy for a particular instance of that loop are specified in the corresponding CR while the logic of loop policy for resource prioritization is hardcoded in the operator of the deliberative loop.***
 
-## INTRODUCTION. TOP LEVEL VIEW
+## INTRODUCTION - TOP LEVEL VIEW
 
 The workflow of operations within the demo is presented in the figure below. The steps of the workflow are marked with consecutive integers, each step comprising one or two "operations" (symbolically represented as "messages" exchanged between particular functional blocks). The figure given below covers a complete demo workflow, i.e., two loops running in parallel. However, the actions relevant to PART 1 (isolated reactive loop) and PART 2 (both loops are interworking) are easily distinguishable in the figure and we will refer to respective steps in the descriptions that follows.
 
