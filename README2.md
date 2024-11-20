@@ -19,6 +19,8 @@ D -->|kubectl action to execute| K[Kubernetes API]
 K -->|true scaling| M
 ```
 
+TODO: in the following, explain the loop structure and operation based on the master CR presented below.
+
 ```yaml
 apiVersion: closedlooppooc.closedloop.io/v1
 kind: ClosedLoop
