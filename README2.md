@@ -4,8 +4,7 @@
 
 Figure - setup with external applications
 
-'''
-
+```
 apiVersion: closedlooppooc.closedloop.io/v1
 kind: ClosedLoop
 metadata:
@@ -148,7 +147,6 @@ status:
   increaserank: start
   increasetime: 2024-11-15 11:02:44.459552452 +0000 UTC m=+251.178921685
   name: closedloop-v2
-  
-'''
+```
 
 aaa
