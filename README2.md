@@ -22,7 +22,7 @@ In the following, we explain the operation of the loop and the rules for definin
   Figure 2. Demo-2 top level view.
 </p>
 
-Internal setup of the loop and its overall workflow is depicted schematically in Figure 3 below.
+Internal setup of the loop and its overall workflow is depicted in greater detail in Figure 3 below.
 
 ```mermaid
 flowchart LR
