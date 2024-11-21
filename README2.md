@@ -4,7 +4,7 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 #### Note: Mastering the installation of the environment and loop deployment process as outlined in README1.md is required to sucessfully recreate Demo-2.
 
-TODO: here goes a more genral picture of loop enritched with interfaces to external apps.
+TODO: here goes a more genral picture of loop enriched with interfaces to external apps.
 
 Figure 1. some text
 
