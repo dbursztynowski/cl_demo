@@ -6,7 +6,10 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 TODO: here goes a more genral picture of loop enritched with interfaces to external apps.
 
-figure
+Figure 1. some text
+
+![Figure 1. General control loop.](images/general-loop.png)
+
 
 ....
 
@@ -14,9 +17,9 @@ some text
 
 ....
 
-In the demo we a set of loop components (custom controllers) similar to the one employed in Demo-1. That should facilitate transition to Demo-2 one Demo-1 has been made familiar with by the reader. The setup of the loop and overall workflow within the demo is depicted in Figure 1 below.
+In the demo we a set of loop components (custom controllers) similar to the one employed in Demo-1. That should facilitate transition to Demo-2 one Demo-1 has been made familiar with by the reader. The setup of the loop and overall workflow within the demo is depicted in Figure 2 below.
 
-**_Figure 1. Demo workflow with external applications in the form of OPA policy engine._**
+**_Figure 2. Demo workflow with external applications in the form of OPA policy engine._**
 ```mermaid
 flowchart LR
 M[Prometheus + Monitored & Managed Objects] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
