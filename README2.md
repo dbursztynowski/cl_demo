@@ -7,7 +7,7 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 Enrichment of operator-based control loop with external applications is shown schematically in Figure 1. 
 
 <p align="center">
-  <img width="30%" src="./images/general-loop.png"></img>
+  <img width="70%" src="./images/general-loop.png"></img>
 </p>
 <p align="center">
   Figure 2. General view of control loop enriched with external applications.
@@ -18,7 +18,7 @@ In contrast to the loop architecture from Demo-1 where all computations and logi
 In the following, we explain the operation of the loop and the rules for defining loop enrichment with external application based on a simple demonstrator. In the demo, we adopt a set of loop components (custom controllers) in a setup similar to the one known from Demo-1. We believe this similarity will facilitate running Demo-2 in case of users familiar with Demo-1. This time, 5G core network based on Open5GS platform serves as the managed object. More specifically, our control loop monitors the number of user sessions (UE sessions) registered in AFM and based on this scales the CPU resource of the UPF. Top leve view of the demo is depicted in Figure 2.
 
 <p align="center">
-  <img width="70%" src="./images/demo2-scaling-general.png"></img>
+  <img width="50%" src="./images/demo2-scaling-general.png"></img>
 </p>
 <p align="center">
   Figure 2. Demo-2 top level view.
