@@ -6,12 +6,14 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 TODO: here goes a more genral picture of loop enriched with interfaces to external apps.
 
-<figure>
+
 <p align="center">
-  <img width="70%" src="./images/general-loop.png"></img>
-  <figcaption align="center">Figure 2. General view of control loop enriched with externall applications.</figcaption>
+  <figure>
+    <img width="70%" src="./images/general-loop.png"></img>
+    <figcaption align="center">Figure 2. General view of control loop enriched with externall applications.</figcaption>
+  </figure>
 </p>
-</figure>
+
 
 
 ....
