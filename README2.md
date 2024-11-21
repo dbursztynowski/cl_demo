@@ -17,7 +17,12 @@ In contrast to the loop architecture from Demo-1 where all computations and logi
 
 In the following, we explain the operation of the loop and the rules for defining loop enrichment with external application based on a simple demonstrator. In the demo, we adopt a set of loop components (custom controllers) in a setup similar to the one known from Demo-1. We believe this similarity will facilitate running Demo-2 in case of users familiar with Demo-1. This time, 5G core network based on Open5GS platform serves as the managed object. More specifically, our control loop monitors the number of user sessions (UE sessions) registered in AFM and based on this scales the CPU resource of the UPF. Top leve view of the demo is depicted in Figure 2.
 
-
+<p align="center">
+  <img width="70%" src="./images/demo2-scaling-general.png"></img>
+</p>
+<p align="center">
+  Figure 2. Demo-2 top level view.
+</p>
 
 The setup of the loop and overall workflow within the demo is depicted schematically in Figure 3 below.
 
