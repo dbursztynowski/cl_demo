@@ -33,7 +33,7 @@ A -->|#AMF UEs| B{Decision}
 B <-->|Rego query with #AMF UEs / scaling decision| C[Policy - OPA, decides on the scaling factor required]
 B -->|Decision to implement| D((Execution))
 D -->|kubectl action to execute| K[Kubernetes API]
-K -->|true scaling| M
+K -->|true scaling in Kubernetes cluster| M
 ```
 <p align="center">
   Figure 3. Demo workflow with external applications in the form of OPA policy engine.
