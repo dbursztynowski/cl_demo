@@ -9,10 +9,7 @@ TODO: here goes a more genral picture of loop enriched with interfaces to extern
 <p align="center">
   <img width="70%" src="./images/general-loop.png"></img>
 </p>
-
-<img style="display: block; margin: auto;" src="./images/general-loop.png" width="70%">
-
-<p style="text-align: center;">
+<p align="center">
   Figure 2. General view of control loop enriched with external applications.
 </p>
 ....
