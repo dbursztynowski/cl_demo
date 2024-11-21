@@ -8,7 +8,7 @@ TODO: here goes a more genral picture of loop enritched with interfaces to exter
 
 Figure 1. some text
 
-![Figure 1. General control loop.](images/general-loop.png)
+![Figure 1. General control loop.](./images/general-loop.png)
 
 
 ....
