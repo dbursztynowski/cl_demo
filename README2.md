@@ -6,7 +6,7 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 TODO: here goes a more genral picture of loop enriched with interfaces to external apps.
 
-<img src="./images/general-loop.png" width="50%"></img>
+<img src="./images/general-loop.png" width="75%" align="center"></img>
 
 
 ....
