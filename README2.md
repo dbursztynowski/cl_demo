@@ -26,11 +26,11 @@ Internal setup of the loop and its overall workflow is depicted schematically in
 
 ```mermaid
 flowchart LR
-M[Prometheus: Monitored AMF UE sessions / Managed UPF CPU quota] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
-X -->|measurement - #UE sessions| A((Monitoring))
-A <-->|Measurement / #UEs| P[Policy - OPA, retrieves the number of UEs]
-A -->|Number of UEs| B{Decision}
-B <-->|Rego query with #UEs / scaling decision| C[Policy - OPA, decides on the scaling factor required]
+M[Prometheus: Monitored number of AMF UE sessions / Managed UPF CPU quota] -->|measurement - #AMF UE sessions is a compound Prometheus record| X(Proxy Pod)
+X -->|measurement - #AMF UE sessions| A((Monitoring))
+A <-->|Prometheus record / #AMF UEs| P[Policy - OPA, retrieves the number of UEs]
+A -->|#AMF UEs| B{Decision}
+B <-->|Rego query with #AMF UEs / scaling decision| C[Policy - OPA, decides on the scaling factor required]
 B -->|Decision to implement| D((Execution))
 D -->|kubectl action to execute| K[Kubernetes API]
 K -->|true scaling| M
