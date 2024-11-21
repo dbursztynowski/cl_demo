@@ -4,7 +4,7 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 
 #### Note: Mastering the installation of the environment and loop deployment process as outlined in README1.md is required to sucessfully recreate Demo-2.
 
-Enrichment of operator-based control loop with external applications is shown schematically in Figure 1. 
+Enrichment of operator-based control loop with external applications is shown schematically in Figure 1. In contrast to the loop architecture from Demo-1 where all computations and logic of the functinal blocks of the loop were hardcoded in respective controllers, now the controllers can refer to external modules to, e.g., query about the decisions to take or execute computationally expensive operations. Once the results of a quere have beed received, the controller can continute its internal workflow. As before (i.e., in Demo-1) this enrichment builds on top of a declarative style of defining the flow of operations within controlers. In this context, loop enrichment extends the possibilities to declaratively define control loops.
 
 <p align="center">
   <img width="60%" src="./images/general-loop.png"></img>
@@ -12,8 +12,6 @@ Enrichment of operator-based control loop with external applications is shown sc
 <p align="center">
   Figure 2. General view of control loop enriched with external applications.
 </p>
-
-In contrast to the loop architecture from Demo-1 where all computations and logic of the functinal blocks of the loop were hardcoded in respective controllers, now the controllers can refer to external modules to, e.g., query about the decisions to take or execute computationally expensive operations. Once the results of a quere have beed received, the controller can continute its internal workflow. As before (i.e., in Demo-1) this enrichment builds on top of a declarative style of defining the flow of operations within controlers. In this context, loop enrichment extends the possibilities to declaratively define control loops.
 
 In the following, we explain the operation of the loop and the rules for defining loop enrichment with external application based on a simple demonstrator. In the demo, we adopt a set of loop components (custom controllers) in a setup similar to the one known from Demo-1. We believe this similarity will facilitate running Demo-2 in case of users familiar with Demo-1. This time, 5G core network based on Open5GS platform serves as the managed object. More specifically, our control loop monitors the number of user sessions (UE sessions) registered in AFM and based on this scales the CPU resource of the UPF. Top level view of the demo is depicted in Figure 2.
 
