@@ -9,7 +9,7 @@ TODO: here goes a more genral picture of loop enriched with interfaces to extern
 <figure>
 <p align="center">
   <img width="70%" src="./images/general-loop.png"></img>
-  <figcaption>General view of control loop enriched with externall applications.</figcaption>
+  <figcaption align="center">Figure 2. General view of control loop enriched with externall applications.</figcaption>
 </p>
 </figure>
 
