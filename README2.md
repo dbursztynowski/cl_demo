@@ -7,7 +7,7 @@ This guide presents a demo summarizing the work done in 2024. Here, the framewor
 Enrichment of operator-based control loop with external applications is shown schematically in Figure 1. 
 
 <p align="center">
-  <img width="70%" src="./images/general-loop.png"></img>
+  <img width="60%" src="./images/general-loop.png"></img>
 </p>
 <p align="center">
   Figure 2. General view of control loop enriched with external applications.
