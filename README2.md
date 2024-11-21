@@ -15,7 +15,7 @@ Enrichment of operator-based control loop with external applications is shown sc
 
 In contrast to the loop architecture from Demo-1 where all computations and logic of the functinal blocks of the loop were hardcoded in respective controllers, now the controllers can refer to external modules to, e.g., query about the decisions to take or execute computationally expensive operations. Once the results of a quere have beed received, the controller can continute its internal workflow. As before (i.e., in Demo-1) this enrichment builds on top of a declarative style of defining the flow of operations within controlers. In this context, loop enrichment extends the possibilities to declaratively define control loops.
 
-In the following, we explain the operation of the loop and the rules for defining loop enrichment with external application based on a simple demonstrator. In the demo, we adopt a set of loop components (custom controllers) in a setup similar to the one known from Demo-1. We believe this similarity will facilitate running Demo-2 in case of users familiar with Demo-1. This time, 5G core network based on Open5GS platform serves as the managed object. More specifically, our control loop monitors the number of user sessions (UE sessions) registered in AFM and based on this scales the CPU resource of the UPF. Top leve view of the demo is depicted in Figure 2.
+In the following, we explain the operation of the loop and the rules for defining loop enrichment with external application based on a simple demonstrator. In the demo, we adopt a set of loop components (custom controllers) in a setup similar to the one known from Demo-1. We believe this similarity will facilitate running Demo-2 in case of users familiar with Demo-1. This time, 5G core network based on Open5GS platform serves as the managed object. More specifically, our control loop monitors the number of user sessions (UE sessions) registered in AFM and based on this scales the CPU resource of the UPF. Top level view of the demo is depicted in Figure 2.
 
 <p align="center">
   <img width="50%" src="./images/demo2-scaling-general.png"></img>
@@ -24,9 +24,8 @@ In the following, we explain the operation of the loop and the rules for definin
   Figure 2. Demo-2 top level view.
 </p>
 
-The setup of the loop and overall workflow within the demo is depicted schematically in Figure 3 below.
+Internal setup of the loop and its overall workflow is depicted schematically in Figure 3 below.
 
-**_Figure 2. Demo workflow with external applications in the form of OPA policy engine._**
 ```mermaid
 flowchart LR
 M[Prometheus + Monitored & Managed Objects] -->|measurement - #UE sessions is a compound Prometheus record| X(Proxy Pod)
@@ -38,9 +37,13 @@ B -->|Decision to implement| D((Execution))
 D -->|kubectl action to execute| K[Kubernetes API]
 K -->|true scaling| M
 ```
+<p align="center">
+  Figure 3. Demo workflow with external applications in the form of OPA policy engine.
+</p>
 
 TODO: in the following, explain the loop structure and operation, and basic syntax based on the master CR presented below.
 
+**Template 1. Master custom resource of Demo-2 control loop.**
 ```yaml
 apiVersion: closedlooppooc.closedloop.io/v1
 kind: ClosedLoop
