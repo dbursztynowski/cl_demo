@@ -1,10 +1,10 @@
 # Demo-2 user guide
 
-This guide presents a demo summarizing the work done in 2024. Here, the framework from Demo-1 has been enhanced by allowing users to delegate the decision making logic of the loop to external applications. Delegation takes the form of sending queries and receiving responses form such applications. This significantly broadens the possibilities offered to the user to declaratively define the decision taking logic of loop components without the need to recompile the code and build new images of operator containers. In this demo, we use OPA/Rego policy engine as an example of external application playing the role of policy decision point. Adding other policy engines (i.e., other applications to work with) may need changes in the code of respective operators. 
+This guide presents a demo summarizing the work done in 2024. Here, the framework from Demo-1 has been enhanced by allowing users to delegate the decision making logic of the loop to external applications. We refer to that as the enrichment of control loop. It takes the form of sending queries and receiving responses form such applications. This significantly broadens the possibilities offered to the user to declaratively define the decision taking logic of loop components without the need to recompile the code and build new images of operator containers. In this demo, we use OPA/Rego policy engine as an example of external application playing the role of policy decision point. Adding other policy engines (i.e., other applications to work with) may need changes in the code of respective operators. 
 
 #### Note: Mastering the installation of the environment and loop deployment process as outlined in README1.md is required to sucessfully recreate Demo-2.
 
-TODO: here goes a more genral picture of loop enriched with interfaces to external apps.
+Enrichment of operator-based control loop with external applications is shown schematically in Figure 1. 
 
 <p align="center">
   <img width="70%" src="./images/general-loop.png"></img>
@@ -12,13 +12,14 @@ TODO: here goes a more genral picture of loop enriched with interfaces to extern
 <p align="center">
   Figure 2. General view of control loop enriched with external applications.
 </p>
-....
 
-some text
+In contrast to the loop architecture from Demo-1 where all computations and logic of the functinal blocks of the loop were hardcoded in respective controllers, now the controllers can refer to external modules to, e.g., query about the decisions to take or execute computationally expensive operations. Once the results of a quere have beed received, the controller can continute its internal workflow. As before (i.e., in Demo-1) this enrichment builds on top of a declarative style of defining the flow of operations within controlers. In this context, loop enrichment extends the possibilities to declaratively define control loops.
 
-....
+In the following, we explain the operation of the loop and the rules for defining loop enrichment with external application based on a simple demonstrator. In the demo, we adopt a set of loop components (custom controllers) in a setup similar to the one known from Demo-1. We believe this similarity will facilitate running Demo-2 in case of users familiar with Demo-1. This time, 5G core network based on Open5GS platform serves as the managed object. More specifically, our control loop monitors the number of user sessions (UE sessions) registered in AFM and based on this scales the CPU resource of the UPF. Top leve view of the demo is depicted in Figure 2.
 
-In the demo we a set of loop components (custom controllers) similar to the one employed in Demo-1. That should facilitate transition to Demo-2 one Demo-1 has been made familiar with by the reader. The setup of the loop and overall workflow within the demo is depicted in Figure 2 below.
+
+
+The setup of the loop and overall workflow within the demo is depicted schematically in Figure 3 below.
 
 **_Figure 2. Demo workflow with external applications in the form of OPA policy engine._**
 ```mermaid
