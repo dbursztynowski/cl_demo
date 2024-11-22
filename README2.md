@@ -1,10 +1,17 @@
 # Demo-2 user guide
 
+## Contents
+
+
+## Opening notes
+
 This guide presents a demo summarizing the work done in 2024. Here, the framework from Demo-1 has been enhanced by allowing users to delegate the decision making logic of the loop to external applications. We refer to that as the enrichment of control loop. It takes the form of sending queries and receiving responses form such applications. This significantly broadens the possibilities offered to the user to declaratively define the decision taking logic of loop components without the need to recompile the code and build new images of operator containers. In this demo, we use OPA/Rego policy engine as an example of external application playing the role of policy decision point. Adding other policy engines (i.e., other applications to work with) may need changes in the code of respective operators. 
 
 #### Note 1: Mastering the installation of the environment and loop deployment process as outlined in README1.md is required to sucessfully recreate Demo-2.
 
 #### Note 2: In the following, we will occasionally use terms _user_, _admin_ and _developer_ to refer to specific roles related to the lifecycle of control loops. User role is responsible for defining master custom resource (and other artifacts as custom policy templates or components as external applications if nescessary) to run control loop instances; it represents an owner of the managed object who wants this object to be controlled in a specific way. Administrator role is responsible for preparation of the whole environment needed to run control loop sby users (this includes in particular setting up Kubernetes cluster where control loops are run, generating operator images, possibly also providing external applications and selected policy templates). And developer role is responsible for writing the code of controllers that provide the functionality of loop components.
+
+## The concept - description
 
 Enrichment of operator-based control loop with external applications is shown schematically in Figure 1. In contrast to the loop architecture from Demo-1 where all computations and logic of the functinal blocks of the loop were hardcoded in respective controllers, now the controllers can refer to external modules to, e.g., query about the decisions to take or execute computationally expensive operations. Once the results of a quere have beed received, the controller can continute its internal workflow. As before (i.e., in Demo-1) this enrichment builds on top of a declarative style of defining the flow of operations within controlers. In this context, loop enrichment extends the possibilities to declaratively define control loops.
 
@@ -43,7 +50,7 @@ K -->|true scaling in Kubernetes cluster| M
   Figure 3. Demo workflow with external applications in the form of OPA policy engine.
 </p>
 
-TODO: in the following, explain the loop structure and operation, and basic syntax based on the master CR presented below.
+TODO: in the following, explain the loop structure and operation, and basic syntax based on the master CR presented below and in reference to Figure 3.
 
 **Template 1. Master custom resource of Demo-2 control loop.**
 ```yaml
@@ -185,3 +192,11 @@ spec:
     message: "{}"
 ```
 TODO: here, explanations to the points marked in Template 1 will be included to describe the syntax and semantics of the constructs used to define loop structure and operation flow within controllers (controllers correspond to functional blocks of the loop).
+
+## The demo
+
+TODO: screenshots for demo run commented (for users and administrators)
+
+## Program structure
+
+TODO: selected details on code structure (for developers)
