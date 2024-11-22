@@ -26,6 +26,8 @@ In the following, we explain the operation of the loop and the rules for definin
 
 Internal setup of the loop and its overall workflow is depicted in greater detail in Figure 3 below. Similarly to Demo-1, main loop components are Monitoring controller, Decision controller and Execution controller. Hovever, in this case Monitoring and Decision controllers communicate with external policy engine (OPA in this case, using Rego query language) to derive needed data (in case of Monitoring) or decisions (in case of Decision). The communication with external applications is accomplished according to declarative specification included in respective custom resources, drawn form the master CR (master CR is the only CR explicitly defined by the user).
 
+TODO: describe in detail the workflow in the loop refering to Figure 3.
+
 ```mermaid
 flowchart LR
 M[Monitored: the number of AMF UE sessions in Prometheus / Actuated: UPF CPU quota] -->|measurement - #AMF UE sessions is a compound Prometheus record| X(Proxy Pod)
