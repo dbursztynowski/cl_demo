@@ -28,7 +28,7 @@ Internal setup of the loop and its overall workflow is depicted in greater detai
 
 ```mermaid
 flowchart LR
-M[Prometheus: Monitored number of AMF UE sessions / Managed UPF CPU quota] -->|measurement - #AMF UE sessions is a compound Prometheus record| X(Proxy Pod)
+M[Prometheus: Monitored the number of AMF UE sessions / Actuated UPF CPU quota] -->|measurement - #AMF UE sessions is a compound Prometheus record| X(Proxy Pod)
 X -->|measurement - #AMF UE sessions| A((Monitoring controller))
 A <-->|Prometheus record / #AMF UEs| P[Policy - OPA, retrieves the number of UEs]
 A -->|#AMF UEs| B{Decision controller}
