@@ -205,4 +205,4 @@ TODO: screenshots for demo run commented (for users and administrators)
 
 ## Notes for developers
 
-TODO: selected details on code structure (for developers)
+TODO: selected details on code structure (for developers). For example, explaining basics of the code in combination with custom resource definitions and custom resources form the demo.
