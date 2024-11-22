@@ -2,13 +2,10 @@
 
 ## Contents
 
-[Opening notes](#opening-notes)
-
-[The concept - description](#the-concept---description)
-
-[Demo run](#demo-run)
-
-[Notes for developers](#notes-for-developers)
+1. [Opening notes](#opening-notes)
+2. [The concept - description](#the-concept---description)
+3. [Demo run](#demo-run)
+4. [Notes for developers](#notes-for-developers)
 
 ## Opening notes
 
