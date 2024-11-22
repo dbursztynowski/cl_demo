@@ -1,9 +1,13 @@
 # Demo-2 user guide
 
 ## Contents
+
 [Opening notes](#opening-notes)
+
 [The concept - description](#the-concept---description)
+
 [Demo run](#demo-run)
+
 [Notes for developers](#notes-for-developers)
 
 ## Opening notes
