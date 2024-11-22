@@ -182,4 +182,4 @@ spec:
       }
     message: "{}"
 ```
-TODO: here, explanations to the points marked in Template 1 will be included to describe the syntax and semantics of defining loop structure and operation flow within controllers (functional blocks of the loop).
+TODO: here, explanations to the points marked in Template 1 will be included to describe the syntax and semantics of the constructs used to define loop structure and operation flow within controllers (controllers correspond to functional blocks of the loop).
